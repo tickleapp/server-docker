@@ -21,4 +21,4 @@ RUN curl -sO https://www.python.org/ftp/python/3.4.2/Python-3.4.2.tgz && \
     echo /usr/local/lib >> /etc/ld.so.conf.d/local.conf && ldconfig && \
     pip3.4 install --upgrade pip setuptools virtualenv
 # Install uwsgi
-RUN pip3.4 install uwsgi
+RUN pip3.4 install uwsgi && ln -s /usr/local/bin/uwsgi /usr/bin/uwsgi
