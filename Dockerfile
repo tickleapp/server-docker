@@ -15,11 +15,11 @@ RUN yum install -y python-virtualenv python-setuptools python-devel python-pip &
     yum clean all -y && \
     pip install --upgrade pip setuptools
 # Install Python 3.4
-RUN curl -sO https://www.python.org/ftp/python/3.4.2/Python-3.4.2.tgz && \
-    tar xf Python-3.4.2.tgz && cd Python-3.4.2 && \
+RUN curl -sO https://www.python.org/ftp/python/3.4.3/Python-3.4.3.tgz && \
+    tar xf Python-3.4.3.tgz && cd Python-3.4.3 && \
     ./configure --prefix=/usr/local --enable-shared && \
     make && make altinstall && \
-    cd .. && rm -rf Python-3.4.2* && \
+    cd .. && rm -rf Python-3.4.3* && \
     echo /usr/local/lib >> /etc/ld.so.conf.d/local.conf && ldconfig && \
     pip3.4 install --upgrade pip setuptools virtualenv
 # Install uwsgi
