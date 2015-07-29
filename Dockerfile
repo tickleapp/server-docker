@@ -5,11 +5,11 @@ FROM centos:latest
 # **     yum update -y && \
 # **     yum groups mark convert && \
 # **     # Install development tools and related libs (for compile Python 3 and uwsgi)
-# **     # Install nginx and supervisor
+# **     # Install nginx, supervisor, and GeoIP
 # **     # Install python libs
 # **     yum groupinstall -y "Development Tools" && \
 # **     yum install -y zlib-devel openssl-devel pcre-devel bzip2-devel ncurses-devel \
-# **     sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel nginx supervisor \
+# **     sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel nginx supervisor GeoIP \
 # **     python-virtualenv python-setuptools python-devel python-pip && \
 # **     # Setup nginx
 # **     echo "daemon off;" >> /etc/nginx/nginx.conf && \
@@ -47,7 +47,7 @@ RUN yum install -y epel-release deltarpm && \
     yum groups mark convert && \
     yum groupinstall -y "Development Tools" && \
     yum install -y zlib-devel openssl-devel pcre-devel bzip2-devel ncurses-devel \
-    sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel nginx supervisor \
+    sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel nginx supervisor GeoIP \
     python-virtualenv python-setuptools python-devel python-pip && \
     echo "daemon off;" >> /etc/nginx/nginx.conf && \
     pip2.7 install --upgrade pip setuptools && \
