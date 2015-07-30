@@ -5,12 +5,15 @@ FROM centos:latest
 # **     yum update -y && \
 # **     yum groups mark convert && \
 # **     # Install development tools and related libs (for compile Python 3 and uwsgi)
-# **     # Install nginx, supervisor, and GeoIP
 # **     # Install python libs
+# **     # Install nginx, supervisor, and GeoIP
+# **     # Install nodejs
 # **     yum groupinstall -y "Development Tools" && \
 # **     yum install -y zlib-devel openssl-devel pcre-devel bzip2-devel ncurses-devel \
-# **     sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel nginx supervisor GeoIP \
-# **     python-virtualenv python-setuptools python-devel python-pip && \
+# **     sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel \
+# **     python-virtualenv python-setuptools python-devel python-pip \
+# **     nginx supervisor GeoIP \
+# **     npm nodejs && \
 # **     # Setup nginx
 # **     echo "daemon off;" >> /etc/nginx/nginx.conf && \
 # **     # Setup pip2.7
@@ -28,6 +31,8 @@ FROM centos:latest
 # **     pip3.4 install uwsgi && ln -s /usr/local/bin/uwsgi /usr/bin/uwsgi && \
 # **     # Install boto (for cloud watch scripts)
 # **     pip2.7 install boto && \
+# **     # Install nodejs related tools
+# **     npm install -g less uglifyjs && \
 # **     # Prepare room for app
 # **     mkdir -p /app && \
 # **     # Prepare venv for app
@@ -47,8 +52,10 @@ RUN yum install -y epel-release deltarpm && \
     yum groups mark convert && \
     yum groupinstall -y "Development Tools" && \
     yum install -y zlib-devel openssl-devel pcre-devel bzip2-devel ncurses-devel \
-    sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel nginx supervisor GeoIP \
-    python-virtualenv python-setuptools python-devel python-pip && \
+    sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel \
+    python-virtualenv python-setuptools python-devel python-pip \
+    nginx supervisor GeoIP \
+    npm nodejs && \
     echo "daemon off;" >> /etc/nginx/nginx.conf && \
     pip2.7 install --upgrade pip setuptools && \
     curl -sO https://www.python.org/ftp/python/3.4.3/Python-3.4.3.tgz && \
@@ -60,6 +67,7 @@ RUN yum install -y epel-release deltarpm && \
     pip3.4 install --upgrade pip setuptools virtualenv && \
     pip3.4 install uwsgi && ln -s /usr/local/bin/uwsgi /usr/bin/uwsgi && \
     pip2.7 install boto && \
+    npm install -g less uglifyjs && \
     mkdir -p /app && \
     virtualenv-3.4 /app/venv -p python3.4 && \
     mkdir -p /var/log/tickle/ && \
